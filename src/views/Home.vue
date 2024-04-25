@@ -1,25 +1,28 @@
 <template>
-  <div
+<div
     class="flex w-full h-16 shadow-sm fixed z-50 bg-white p-5 px-14 justify-between font-pop font-semibold"
   >
-    <Navbar></Navbar>
+    <div><Navbar></Navbar></div>
     <div>Hydrate Hero</div>
-    <div>Notif</div>
-  </div>
-
+  <div class="notification">
+<svg fill="#000000" width="24" height="24" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M10,21h4a2,2,0,0,1-4,0ZM3.076,18.383a1,1,0,0,1,.217-1.09L5,15.586V10a7.006,7.006,0,0,1,6-6.92V2a1,1,0,0,1,2,0V3.08A7.006,7.006,0,0,1,19,10v5.586l1.707,1.707A1,1,0,0,1,20,19H4A1,1,0,0,1,3.076,18.383ZM6.414,17H17.586l-.293-.293A1,1,0,0,1,17,16V10A5,5,0,0,0,7,10v6a1,1,0,0,1-.293.707Z"/></svg>
+<span v-if="showReminder">Jangan lupa minum air!</span>
+</div>
+</div>
   <div class="flex flex-col relative items-center py-32 lg:items-end lg:px-32 show-shape">
     <img
       class="absolute w-32 lg:w-56 z-10 wind-up"
-      src="../../assets/image/hero.png"
+      src="../assets/images/hero.png"
       alt=""
     />
     <img
       class="absolute w-56 lg:w-96 lg:right-14 z-1 wind-mill"
-      src="../../assets/image/behind.png"
+      src="../assets/images/behind.png"
       alt=""
     />
   </div>
 
+  <section class="lg:w-full lg:h-[500px]" >
   <div class="lg:absolute lg:top-0 h-[800px]">
     <div class="flex justify-between px-14 font-pop">
       <div class="flex flex-col space-y-13 pt-64">
@@ -38,10 +41,12 @@
       </div>
     </div>
   </div>
+</section>
 
+  <section class="lg:w-full lg:h-[800px] lg:bg-gray-100">
   <div v-for="get in getUser" :key="get.id">
   <div
-    class="md:grid md:grid-cols-2 md:grid-rows-2 px-10 bg-gray-100 -mt-40 md:-mt-56 lg:mt-[450px]"
+    class="md:grid md:grid-cols-2 md:grid-rows-2 px-10 -mt-40 md:-mt-56 lg:mt-[450px]"
   >
     <div class="flex items-center justify-center py-10">
       <div
@@ -253,14 +258,25 @@
     </div>
     </div>
   </div>
+  </section>
+
 
   <div class="flex flex-col items-center justify-center space-y-10 show-bounce">
-    <div class="text-6xl text-blue-800 font-bold pt-28">
-      <h1>500 ML</h1>
+    <div class="text-6xl text-blue-800 font-bold pt-28" v-if="amount"> 
+      <span class="delete" v-for="get in amount" :key="get.id"> {{ get.amount }}</span>
+    </div>
+    <div v-else>
+      <h1>Memuat...</h1>
     </div>
     <div>
-      <BottomBar></BottomBar>
+      <BottomBar/>
     </div>
+     <div v-if="isExceedingLimit" class="exceeds-limit-alert">
+  Peringatan: Hidrasi Anda melebihi batas!
+</div>
+<div v-else class="exceeds-limit-message">
+  Hidrasi Anda terpenuhi.
+</div>
   </div>
 
   <div
@@ -321,42 +337,114 @@
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapGetters, mapActions } from "vuex";
 import BottomBar from "@/components/BottomBar.vue";
 import gsap from "gsap";
 import { TweenMax, Power0 } from "gsap";
 import Navbar from "../components/Navbar.vue";
 
+
+document.addEventListener("DOMContentLoaded", function () {
+    const showNavigationButton = document.querySelector(
+        "[data-drawer-show='drawer-navigation']"
+    );
+    const drawerNavigation = document.getElementById("drawer-navigation");
+
+    // Tambahkan event listener untuk tombol
+    showNavigationButton.addEventListener("click", function () {
+        drawerNavigation.classList.add("translate-x-0"); // Menggeser drawer ke posisi terlihat
+        drawerNavigation.focus(); // Fokuskan drawer setelah ditampilkan
+    });
+
+    // Tambahkan event listener untuk tombol close di dalam drawer
+    const closeMenuButton = drawerNavigation.querySelector(
+        "[data-drawer-hide='drawer-navigation']"
+    );
+    closeMenuButton.addEventListener("click", function () {
+        drawerNavigation.classList.remove("translate-x-0"); // Menggeser drawer kembali ke posisi semula
+        showNavigationButton.focus(); // Fokuskan kembali tombol "Show navigation"
+    });
+
+    // Tambahkan event listener untuk menutup drawer saat ESC ditekan
+    document.addEventListener("keydown", function (event) {
+        if (event.key === "Escape") {
+            drawerNavigation.classList.remove("translate-x-0"); // Menggeser drawer kembali ke posisi semula
+            showNavigationButton.focus(); // Fokuskan kembali tombol "Show navigation"
+        }
+    });
+
+    // Handler klik di luar dropdown untuk menyembunyikannya
+    const bellIcon = document.getElementById("notification-bell");
+    const dropdown = document.getElementById("notification-dropdown");
+    document.addEventListener('click', function(event) {
+        if (!dropdown.contains(event.target) && event.target !== bellIcon) {
+            dropdown.style.display = 'none';
+        }
+    });
+});
+
 export default {
   components: {
+    BottomBar,
     Navbar,
   },
   computed: {
     ...mapGetters(["getArtikelData"]),
     ...mapGetters(["getUserDetail"]),
+    ...mapGetters(["getAmountData"]),
+    ...mapGetters(["isExceedingLimit"]),
 
+    showNotification() {
+      // Gantikan logika ini dengan kondisi yang sesuai untuk menampilkan notifikasi
+      // Di sini, Anda bisa menggunakan properti "showNotification" untuk menguji notifikasi
+      return true; // Ubah menjadi false jika Anda tidak ingin menampilkan notifikasi
+    },
     artikel() {
       return this.getArtikelData;
     },
     getUser() {
       return this.getUserDetail;
     },
+    amount() {
+      return this.getAmountData;
+    }
+  },
+  created() {
+    // Set interval untuk memeriksa setiap 2 jam
+    setInterval(() => {
+      if (this.showReminder) {
+        // Tampilkan notifikasi atau lakukan tindakan lainnya
+        console.log("Jangan lupa minum air!");
+      }
+    }, 2 * 60 * 60 * 1000);
   },
   methods: {
     showReadMore(art) {
       this.$router.push(`/detail-artikel/${art.id}`);
     },
+     ...mapActions(["logout"]),
+     async handleLogout() {
+      try {
+        await this.logout(); // Memanggil aksi logout dari store Vuex
+        // Set state atau variabel untuk menunjukkan bahwa logout berhasil
+        // Misalnya, untuk menampilkan pop-up logout berhasil
+        this.logoutSuccess = true; 
+        // Redirect ke halaman login setelah logout berhasil
+        setTimeout(() => {
+          this.$router.push('/'); // Mengarahkan pengguna kembali ke halaman utama
+        }, 3000); // Misalnya, sembunyikan pop-up setelah 3 detik
+      } catch (error) {
+        console.error("Error during logout:", error);
+        // Tangani kesalahan jika logout gagal
+        // Misalnya, menampilkan pesan kesalahan kepada pengguna
+      }
+    }
   },
   mounted() {
     this.$store.dispatch('getDetail');
     this.$store.dispatch('getArtikel');
-
+    this.$store.dispatch('getAmount');
   },
-
-  components: {
-    BottomBar,
-  },
-
 };
 </script>
 
@@ -364,5 +452,9 @@ export default {
 body {
   margin: 0;
   height: 200vh; /* agar scroll bisa terjadi */
+}
+.exceeds-limit-message  {
+  color: red;
+  font-weight: bold;
 }
 </style>

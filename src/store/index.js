@@ -2,6 +2,7 @@ import { createStore } from "vuex";
 import auth from "./modules/auth";
 import artikel from "./modules/artikel";
 import detail from "./modules/detail";
+import amount from "./modules/amount"
 
 const store = createStore({
     state: {
@@ -10,7 +11,8 @@ const store = createStore({
     modules: {
         auth,
         artikel,
-        detail
+        detail,
+        amount,
     },
 });
 

@@ -213,21 +213,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
 export default {
   methods: {
-    async handleLogout() {
-      try {
-        console.log("Attempting to logout...");
-        await this.$store.dispatch('auth/logout');
-        console.log(this.$store.getters["auth/isAuthenticated"]); // Harusnya false jika logout berhasil
-        console.log(localStorage.getItem("token")); // Harusnya null jika logout berhasil
-        console.log(localStorage.getItem("user")); // Harusnya null jika logout berhasil
-        console.log("Logout successful!");
-        // Redirect to login page or perform other actions after successful logout
-      } catch (error) {
-        console.error('Error during logout:', error);
-      }
+   handleLogout() {
+      this.$store.dispatch('logout'); // Panggil aksi logout dari Vuex saat tombol logout diklik
+      this.$router.push({ name: 'login' }); // Arahkan pengguna ke halaman login setelah logout
     }
+
   }
 }
+
 
 </script>
 

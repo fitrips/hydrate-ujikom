@@ -1,19 +1,5 @@
 import axios from "axios";
 
-// Fungsi untuk melakukan logout
-async function logout() {
-  try {
-    // Lakukan panggilan API DELETE ke endpoint logout
-    const response = await axios.delete('http://localhost:3000/api/users/logout');
-
-    // Handle respons sesuai kebutuhan
-    console.log(response.data); // Misalnya, mencetak respons ke konsol
-  } catch (error) {
-    // Tangani kesalahan jika panggilan gagal
-    console.error('Error during logout:', error);
-  }
-}
-
 const state = {
   isAuthenticated: false,
   loginError: null,
@@ -73,6 +59,7 @@ const actions = {
       return false;
     }
   },
+  
   async getUser({ commit }) {
     try {
       const config = {
@@ -95,28 +82,24 @@ const actions = {
       console.error(error);
     }
   },
+  
   async logout({ commit }) {
     try {
-      // Lakukan panggilan API DELETE ke endpoint logout
-      const response = await axios.delete('http://localhost:3000/api/users/logout');
-  
-      console.log(response.data); // Misalnya, mencetak respons ke konsol
-  
-      // Reset status autentikasi dan data pengguna di state setelah logout berhasil
+      localStorage.removeItem("token");
+      localStorage.removeItem("user");
+
       commit("setAuthenticated", false);
       commit("setToken", null);
       commit("setUser", {});
-  
-      // Hapus token dan data pengguna dari local storage
-      localStorage.removeItem("token");
-      localStorage.removeItem("user");
+
+      return true;
     } catch (error) {
-      // Tangani kesalahan jika panggilan gagal
-      console.error('Error during logout:', error);
-      throw error; // Dilemparkan untuk menangkapnya di action jika perlu
+      console.error(error);
+      return false;
     }
-  }
+  },
 };
+
 
 const mutations = {
   setAuthenticated(state, isAuthenticated) {
@@ -132,6 +115,7 @@ const mutations = {
     state.user = user;
   },
 };
+
 
 export default {
   state,
