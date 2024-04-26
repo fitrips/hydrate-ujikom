@@ -69,6 +69,11 @@
                 <a href="#" class="text-hydrate-0"> Forgot your password? </a>
               </div>
             </div>
+            <div class="text-center mt-2 cursor-pointer" onclick="window.location='/register'">
+              <p class="text-hydrate-0 text-gray-600 text-xs">
+                 Do you not have an account?
+              </p>
+            </div>
             <div>
               <button
                 type="submit"

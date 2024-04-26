@@ -65,6 +65,13 @@ export default {
     getArtikelById(id) {
       return this.artikel.find((art) => art.id === id);
     },
+    parseLink(text) {
+      // Regular expression to match URLs
+      const urlRegex = /(https?:\/\/[^\s]+)/g;
+      return text.replace(urlRegex, (url) => {
+        return `<a href="${url}" target="_blank" class="text-blue-500">${url}</a>`;
+      });
+    },
   },
 };
 </script>

@@ -214,7 +214,7 @@
             </svg>
           </div>
           <div>
-            <span class="block text-2xl font-bold">{{ user && user.length }}</span>
+            <span class="block text-2xl font-bold">1</span>
             <span class="block text-gray-500">User</span>
           </div>
         </div>
@@ -238,7 +238,7 @@
             </svg>
           </div>
           <div>
-            <span class="block text-2xl font-bold">121</span>
+            <span class="block text-2xl font-bold">1</span>
             <span class="block text-gray-500">New User</span>
           </div>
         </div>
@@ -281,8 +281,8 @@
             </svg>
           </div>
           <div>
-            <span class="block text-2xl font-bold">89562</span>
-            <span class="block text-gray-500">Article Visited</span>
+            <span class="block text-2xl font-bold">3</span>
+            <span class="block text-gray-500">Article </span>
           </div>
         </div>
       </section>
@@ -310,70 +310,62 @@
           </svg>
         </div>
           <!-- Pop-up form -->
-  <div v-if="showAddArticleForm" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
-    <div class="bg-white dark:bg-gray-900 p-8 rounded-lg max-w-lg">
-        <!-- Isi pop-up form -->
-        <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambahkan Artikel Terbaru</h2>
-        <form @submit.prevent="addArticle">
-          <!-- Isi formulir di sini -->
-          <!-- URL Gambar -->
-          <div>
-            <label for="img-url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tautan Gambar</label>
-            <input type="url" v-model="newArticle.image_url" id="img-url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan URL gambar" required>
-          </div>
-          <!-- Judul Artikel -->
-          <div>
-            <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
-            <input type="text" v-model="newArticle.title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan judul artikel" required>
-          </div>
-          <!-- Poin-poin -->
-          <div>
-            <label for="points" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poin-poin</label>
-            <textarea v-model="newArticle.poin" id="points" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan poin-poin kunci, setiap poin dipisahkan dengan baris baru" required style="resize: none;"></textarea>
-          </div>
-          <!-- Konten Artikel -->
-          <div>
-            <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konten</label>
-            <textarea v-model="newArticle.konten" id="content" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan konten artikel" required></textarea>
-          </div>
-          <div class="flex justify-between mt-4"> <!-- Tambahkan div untuk menempatkan dua tombol dalam satu baris -->
-            <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-white bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
-              Tambah Artikel
-            </button>
-            <button type="button" @click="showAddArticleForm = false" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-gray-900 bg-gray-200 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-gray-300">
-              Batal
-            </button>
-          </div>
-        </form>
-          </div>
-          </div>
+<div v-if="showAddArticleForm" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white dark:bg-gray-900 p-8 rounded-lg max-w-lg">
+    <!-- Isi pop-up form -->
+    <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Tambahkan Artikel Terbaru</h2>
+    <form @submit.prevent="addArticle">
+      <!-- Isi formulir di sini -->
+      <!-- URL Gambar -->
+      <div>
+        <label for="img-url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tautan Gambar</label>
+        <input type="url" v-model="newArticle.image_url" id="img-url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan URL gambar" required>
+      </div>
+      <!-- Judul Artikel -->
+      <div>
+        <label for="title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
+        <input type="text" v-model="newArticle.title" id="title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan judul artikel" required>
+      </div>
+      <!-- Poin-poin -->
+      <div>
+        <label for="points" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poin-poin</label>
+        <textarea v-model="newArticle.poin" id="points" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan poin-poin kunci, setiap poin dipisahkan dengan baris baru" required style="resize: none;"></textarea>
+      </div>
+      <!-- Konten Artikel -->
+      <div>
+        <label for="content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konten</label>
+        <textarea v-model="newArticle.konten" id="content" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Masukkan konten artikel" required></textarea>
+      </div>
+      <div class="flex justify-between mt-4"> <!-- Tambahkan div untuk menempatkan dua tombol dalam satu baris -->
+        <button type="submit" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-black bg-primary-700 rounded-lg focus:ring-4 focus:ring-primary-200 dark:focus:ring-primary-900 hover:bg-primary-800">
+          Tambah Artikel
+        </button>
+      </div>
+    </form>
+  </div>
+</div>
           </div>
 
           <div class="p-4 flex-grow">
             <div
+              v-for="(artikel, index) in artikel" :key="index"
               class="mx-auto my-8 flex max-w-screen-sm rounded-xl border border-gray-100 p-4 text-left text-gray-600 shadow-lg sm:p-8"
             >
-              <img
-                class="mr-5 block h-8 w-8 max-w-full text-left align-middle sm:h-16 sm:w-16"
-                src="https://waterminder.com/images/Blogs/Hydration%20Tips%20for%20People%20with%20Certain%20Health%20Conditions.png"
-                alt="Profile Picture"
-              />
+               <img class="mr-5 block h-8 w-8 max-w-full text-left align-middle sm:h-16 sm:w-16" :src="artikel.image_url" alt="Profile Picture" />
               <div class="w-full text-left">
                 <div
                   class="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row"
                 >
-                  <h3 class="font-bold">Hydration Tips</h3>
-                  <time class="text-xs" datetime="2022-11-13T20:00Z"
-                    >July 18, 2022 at 10:36 AM</time
-                  >
+                  <h3 class="font-bold">{{ artikel.title }}</h3>
+                   <!-- <time class="text-xs" :datetime="artikel.timestamp">July 18, 2022 at 10:36 AM</time> -->
                 </div>
-                <p class="text-sm">Hey, do you want to know a secret?</p>
+                 <p class="text-sm">{{ artikel.konten }}</p>
                 <div
                   class="mt-5 flex items-center justify-between text-gray-600"
                 >
                   <div class="flex items-center">
-                    <div class="cursor-pointer mr-2">
-                      <svg
+                    <div class="cursor-pointer mr-2" @click="showEditForm(artikel)">
+                                          <svg
                         xmlns="http://www.w3.org/2000/svg"
                         data-name="Layer 1"
                         viewBox="0 0 24 24"
@@ -389,170 +381,38 @@
                         ></path>
                       </svg>
                     </div>
-
-                    <div class="cursor-pointer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        id="delete"
-                      >
-                        <path fill="none" d="M0 0h24v24H0V0z"></path>
-                        <path
-                          d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                          fill="red"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div></div>
-                  <a
-                    title="Likes"
-                    href="#"
-                    class="group flex cursor-pointer items-center justify-around"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6 rounded-full p-1 group-hover:bg-red-200 group-hover:text-red-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                    12
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mx-auto my-8 flex max-w-screen-sm rounded-xl border border-gray-100 p-4 text-left text-gray-600 shadow-lg sm:p-8"
-            >
-              <img
-                class="mr-5 block h-8 w-8 max-w-full text-left align-middle sm:h-16 sm:w-16"
-                src="https://waterminder.com/images/Blogs/A%20guide%20for%20using%20WaterMinder%20App%20on%20smartwatch.png"
-                alt="Profile Picture"
-              />
-              <div class="w-full text-left">
-                <div
-                  class="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row"
-                >
-                  <h3 class="font-bold">Guide For Using</h3>
-                  <time class="text-xs" datetime="2022-11-13T20:00Z"
-                    >July 18, 2022 at 10:36 AM</time
-                  >
-                </div>
-                <p class="text-sm">We are literally here...</p>
-                <div
-                  class="mt-5 flex items-center justify-between text-gray-600"
-                >
-                  <div class="flex items-center">
-                    <div class="cursor-pointer mr-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        data-name="Layer 1"
-                        viewBox="0 0 24 24"
-                        width="15"
-                        height="15"
-                        id="edit"
-                      >
-                        <path
-                          d="M3.5,24h15A3.51,3.51,0,0,0,22,20.487V12.95a1,1,0,0,0-2,0v7.537A1.508,1.508,0,0,1,18.5,22H3.5A1.508,1.508,0,0,1,2,20.487V5.513A1.508,1.508,0,0,1,3.5,4H11a1,1,0,0,0,0-2H3.5A3.51,3.51,0,0,0,0,5.513V20.487A3.51,3.51,0,0,0,3.5,24Z"
-                        ></path>
-                        <path
-                          d="M9.455,10.544l-.789,3.614a1,1,0,0,0,.271.921,1.038,1.038,0,0,0,.92.269l3.606-.791a1,1,0,0,0,.494-.271l9.114-9.114a3,3,0,0,0,0-4.243,3.07,3.07,0,0,0-4.242,0l-9.1,9.123A1,1,0,0,0,9.455,10.544Zm10.788-8.2a1.022,1.022,0,0,1,1.414,0,1.009,1.009,0,0,1,0,1.413l-.707.707L19.536,3.05Zm-8.9,8.914,6.774-6.791,1.4,1.407-6.777,6.793-1.795.394Z"
-                        ></path>
-                      </svg>
-                    </div>
-
-                    <div class="cursor-pointer">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        width="20"
-                        height="20"
-                        viewBox="0 0 24 24"
-                        id="delete"
-                      >
-                        <path fill="none" d="M0 0h24v24H0V0z"></path>
-                        <path
-                          d="M16 9v10H8V9h8m-1.5-6h-5l-1 1H5v2h14V4h-3.5l-1-1zM18 7H6v12c0 1.1.9 2 2 2h8c1.1 0 2-.9 2-2V7z"
-                          fill="red"
-                        ></path>
-                      </svg>
-                    </div>
-                  </div>
-                  <div></div>
-                  <a
-                    title="Likes"
-                    href="#"
-                    class="group flex cursor-pointer items-center justify-around"
-                  >
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      class="h-6 w-6 rounded-full p-1 group-hover:bg-red-200 group-hover:text-red-500"
-                      fill="none"
-                      viewBox="0 0 24 24"
-                      stroke="currentColor"
-                      stroke-width="2"
-                    >
-                      <path
-                        stroke-linecap="round"
-                        stroke-linejoin="round"
-                        d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"
-                      />
-                    </svg>
-                    12
-                  </a>
-                </div>
-              </div>
-            </div>
-            <div
-              class="mx-auto my-8 flex max-w-screen-sm rounded-xl border border-gray-100 p-4 text-left text-gray-600 shadow-lg sm:p-8"
-            >
-              <img
-                class="mr-5 block h-8 w-8 max-w-full text-left align-middle sm:h-16 sm:w-16"
-                src="https://i0.wp.com/blog.waterminder.com/wp-content/uploads/2024/01/Why-should-you-be-drinking-more-water-this-winter_-2.png?resize=400%2C250&ssl=1"
-                alt="Profile Picture"
-              />
-              <div class="w-full text-left">
-                <div
-                  class="mb-2 flex flex-col justify-between text-gray-600 sm:flex-row"
-                >
-                  <h3 class="font-bold">Why Should</h3>
-                  <time class="text-xs" datetime="2022-11-13T20:00Z"
-                    >July 18, 2022 at 10:36 AM</time
-                  >
-                </div>
-                <p class="text-sm">As autumn bids its farewell....</p>
-                <div
-                  class="mt-5 flex items-center justify-between text-gray-600"
-                >
-                  <div class="flex items-center">
-                    <div class="cursor-pointer mr-2">
-                      <svg
-                        xmlns="http://www.w3.org/2000/svg"
-                        data-name="Layer 1"
-                        viewBox="0 0 24 24"
-                        width="15"
-                        height="15"
-                        id="edit"
-                      >
-                        <path
-                          d="M3.5,24h15A3.51,3.51,0,0,0,22,20.487V12.95a1,1,0,0,0-2,0v7.537A1.508,1.508,0,0,1,18.5,22H3.5A1.508,1.508,0,0,1,2,20.487V5.513A1.508,1.508,0,0,1,3.5,4H11a1,1,0,0,0,0-2H3.5A3.51,3.51,0,0,0,0,5.513V20.487A3.51,3.51,0,0,0,3.5,24Z"
-                        ></path>
-                        <path
-                          d="M9.455,10.544l-.789,3.614a1,1,0,0,0,.271.921,1.038,1.038,0,0,0,.92.269l3.606-.791a1,1,0,0,0,.494-.271l9.114-9.114a3,3,0,0,0,0-4.243,3.07,3.07,0,0,0-4.242,0l-9.1,9.123A1,1,0,0,0,9.455,10.544Zm10.788-8.2a1.022,1.022,0,0,1,1.414,0,1.009,1.009,0,0,1,0,1.413l-.707.707L19.536,3.05Zm-8.9,8.914,6.774-6.791,1.4,1.407-6.777,6.793-1.795.394Z"
-                        ></path>
-                      </svg>
-                    </div>
-
-                    <div class="cursor-pointer">
+                    <!-- Pop-up form edit -->
+<div v-if="showEditArticleForm" class="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 flex justify-center items-center z-50">
+  <div class="bg-white dark:bg-gray-900 p-8 rounded-lg max-w-lg">
+    <!-- Isi pop-up form edit di sini -->
+    <!-- Tautan Gambar -->
+    <div>
+      <label for="edit-img-url" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Tautan Gambar</label>
+      <input type="url" v-model="editedArticle.image_url" id="edit-img-url" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+    </div>
+    <!-- Judul Artikel -->
+    <div>
+      <label for="edit-title" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Judul</label>
+      <input type="text" v-model="editedArticle.title" id="edit-title" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+    </div>
+    <!-- Poin-poin -->
+    <div>
+      <label for="edit-points" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poin-poin</label>
+      <textarea v-model="editedArticle.poin" id="edit-points" rows="4" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required style="resize: none;"></textarea>
+    </div>
+    <!-- Konten Artikel -->
+    <div>
+      <label for="edit-content" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Konten</label>
+      <textarea v-model="editedArticle.konten" id="edit-content" rows="8" class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" required></textarea>
+    </div>
+    <div class="flex justify-between mt-4"> <!-- Tambahkan div untuk menempatkan dua tombol dalam satu baris -->
+      <button @click="closeEditForm()" class="inline-flex items-center px-5 py-2.5 text-sm font-medium text-black bg-gray-300 rounded-lg focus:ring-4 focus:ring-gray-400 dark:focus:ring-gray-900 hover:bg-gray-400">
+        simpan
+      </button>
+    </div>
+  </div>
+</div>
+                    <div class="cursor-pointer" @click="deleteData(index)">
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
                         width="20"
@@ -660,7 +520,9 @@ export default {
         title: '',
         poin: '',
         konten: ''
-      }
+      },
+      editedArticle: {}, // tambahkan objek untuk menyimpan artikel yang akan diedit
+      showEditArticleForm: false // tambahkan properti untuk mengontrol tampilan formulir edit
     };
   },
   computed: {
@@ -683,12 +545,40 @@ export default {
     getArtikelById(id) {
       return this.artikel.find((art) => art.id === id);
     },
-
+    // Metode untuk menampilkan formulir edit artikel
+    showEditForm(artikel) {
+      this.showEditArticleForm = true;
+      // Mengisi data artikel yang akan diedit ke dalam objek editedArticle
+      this.editedArticle = artikel;
+    },
+    // Metode untuk menutup formulir edit artikel
+    closeEditForm() {
+      this.showEditArticleForm = false;
+    },
+    // Metode untuk menyimpan perubahan data artikel yang diedit
+   // Metode untuk menyimpan perubahan data artikel yang diedit
+updateArticle() {
+  // Temukan indeks artikel yang akan diedit dalam array artikel
+  const index = this.artikel.findIndex(art => art.id === this.editedArticle.id);
+  // Perbarui data artikel yang sesuai dengan data yang diedit
+  this.$set(this.artikel, index, this.editedArticle);
+  // Menyembunyikan formulir setelah perubahan disimpan
+  this.showEditArticleForm = false;
+},
+  // Metode untuk menghapus data
+  deleteData(index) {
+    this.artikel.splice(index, 1); // Menghapus data dari array artikel
+  },
     addArticle() {
-      // Logika untuk menambahkan artikel ke database atau state Vuex
-      // Anda bisa memanggil action Vuex untuk melakukan ini
-      this.$store.dispatch("addNewArticle", this.newArticle);
-      // Setelah berhasil menambahkan, atur ulang formulir dan sembunyikan pop-up form
+      // Tambahkan artikel baru ke dalam array artikel secara manual
+      this.artikel.push({
+        image_url: this.newArticle.image_url,
+        title: this.newArticle.title,
+        poin: this.newArticle.poin,
+        konten: this.newArticle.konten
+      });
+
+      // Setelah itu, atur ulang formulir dan sembunyikan pop-up form
       this.newArticle.image_url = '';
       this.newArticle.title = '';
       this.newArticle.poin = '';
@@ -700,5 +590,4 @@ export default {
     this.getUser();
   },
 };
-
 </script>
